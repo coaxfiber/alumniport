@@ -1,6 +1,8 @@
 import {Inject,  Injectable } from '@angular/core';
 import {Router} from "@angular/router";
-import {Headers, RequestOptions} from '@angular/http';
+import Swal from 'sweetalert2'
+// CommonJS
+const swal =Swal
 
 @Injectable()
 export class GlobalService {
@@ -10,13 +12,6 @@ export class GlobalService {
 	header = new Headers();
 	option:any;
   constructor(private router: Router) { 	
-  }
-
-  requestToken(toks){
-  	this.token = toks;
-    this.header.append("Content-Type", "application/json");
-  	this.header.append("Authorization","Bearer " + this.token);
-  	this.option = new RequestOptions({ headers: this.header });
   }
 
   // swalAlert(title,text,type)
@@ -39,10 +34,14 @@ export class GlobalService {
   // }
 
 
-  // swalAlertError()
-  // {
-  //  swal('Oops...', 'Something went wrong!', 'error');
-  // }
+  swalAlertError(error=null)
+  {
+   if(error==null)
+     swal.fire('Connection Error2!', 'Database Server may be down. Please try again later.', 'error')
+    //swal.fire('Connection Error!', 'Database Server may be down. Please try again later.<br><br>'+"Error reference: ("+error.status+") "+error.statusText+"<br>Target: "+error.url.replace(this.api,''), 'error');
+   else
+     swal.fire('Connection Error!', 'Database Server may be down. Please try again later.', 'error')
+  }
 
   
   
