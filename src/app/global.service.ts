@@ -14,7 +14,7 @@ export class GlobalService {
   constructor(private router: Router) { 	
   }
 
-  // swalAlert(title,text,type)
+  // swalAlert(title,text,type) 
   // {
   // 	swal(
   //         title,
